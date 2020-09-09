@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TO-DO-LIST</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme">
+        <style type="text/css">
+        *{
+            margin:0px;
+            box-sizing:border-box;
+        }
+        body{
+            background-color: #056674;
+            position: relative;
+        }
+        .container{
+            position:absolute;
+            width:300px;
+
+            top:50%;
+            left:50%;
+            margin-left: -150px;
+            margin-top:80px;
+            margin-bottom:20px;
+            background-color:#66bfbf;
+            padding:30px;
+            text-align: center;
+            box-shadow: 0px 0px 10px black ;
+            border-radius: 30px;
+        }
+        .header{
+            font-family: "Cinzel";
+            padding: 10px;
+            
+        }
+        input[type="text"],input[type="checkbox"],button{
+            outline:none;
+            border:none;
+            background:none;
+            font-size: 15px;
+        }
+        #enter{
+            display:flex;
+            align-content: center;
+            justify-content: center;
+            margin:10px;
+        }
+        #add{
+            background-color: #e0ece4;
+            padding:15px;
+            border-radius: 30px;
+            box-shadow: inset 0px 0px 2px black;
+            
+        }
+        .plus{
+            font-family: "Cinzel";
+            font-size: 15px;
+            float: left;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0px 0px 2px black;
+            background-color:black;
+            color:lightyellow; 
+            transition: all 0.7s ;
+        }
+        .plus:hover{
+            background-color: #8d93ab;
+            color:black;
+        }
+        #text{
+            float:left;
+            width:90px;
+            font-size: 15px;
+            font-family: : "Catamaran";
+        }
+        #lists{
+            padding:30px;
+            border-top: 2px solid black;
+            font-family: "Catamaran";
+            font-size:15px;
+        }
+        #ele{
+            background-color: #e9ece9;
+            margin:10px;
+            padding:10px;
+            box-shadow: 1px 1px 3px black , -1px -1px 3px white;;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+            transition: all 0.7s;
+        }
+        #data{
+            padding:0px 20px;
+            overflow-x:auto;}
+        #deletebutton{
+            border-left:2px solid grey;
+            color:crimson;
+        }
+        #deletebutton:hover{
+            color:darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"><h1>TO-DO-LIST</h1></div>
+    <div id="enter">
+        <div id="add">
+            <input class="text" type="text" placeholder="Write Here" id="text">
+            <button onclick="add()" class="plus">ADD</button>
+        </div>
+    </div>
+    <div id="lists">
+        <h3>TODO</h3>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        var list = document.getElementById("lists");
+        var text = document.getElementById("text");
+        function add(){
+            if(text.value != ""){
+               var ele = document.createElement("div");
+
+            var data = document.createElement("div");
+                data.innerHTML=text.value;
+            var deletebutton = document.createElement("button");
+            var checkbox = document.createElement("input");
+                checkbox.type="checkbox";
+            ele.appendChild(checkbox);
+            ele.appendChild(data);
+            ele.appendChild(deletebutton);
+            list.append(ele);
+            text.value = "" ; 
+                ele.setAttribute("id","ele");
+                data.setAttribute("id","data");
+                deletebutton.setAttribute("id","deletebutton");
+                deletebutton.innerHTML="Delete";
+            var x=0;
+            checkbox.addEventListener("change",function(){
+                
+                if(x%2 == 0 ){
+                ele.style.backgroundColor = "lightgray";
+                data.style.color="darkgreen";}
+                else{
+                    ele.style.backgroundColor = "#e9ece9";
+                data.style.color="black";
+                }
+                x++;
+            });
+
+            deletebutton.addEventListener("click",function(){
+                lists.removeChild(ele);
+            }
+            );
+        }
+    }
+    </script>
+</body>
+</html>
